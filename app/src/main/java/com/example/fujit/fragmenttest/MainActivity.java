@@ -1,17 +1,22 @@
 package com.example.fujit.fragmenttest;
 
-import android.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.fujit.fragmenttest.presenter.MainPresenter;
+import com.example.fujit.fragmenttest.presenter.PresenterInterface;
+import com.example.fujit.fragmenttest.view.ViewInterface;
 
-    private DatabaseHelper db;
+public class MainActivity extends AppCompatActivity implements ViewInterface
+{
+
+    private PresenterInterface presenter;
     private TableView tableView;
     private int nowPage = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,39 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setSubtitle(R.string.app_name);
 
-        db = new DatabaseHelper(this);
+
 
         FragmentPlacer fPlacer = new FragmentPlacer();
         tableView = new TableView();
         fPlacer.addFragment(this, tableView, R.id.frameLayout1);
 
-
-
+        presenter = new MainPresenter(this);
+        presenter.setOnPageChangeListener(tableView);
     }
-
-//
-//    @Override
-//    public void onAttachFragment(Fragment fragment)
-//    {
-//        tableView.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
-//        {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-//            {}
-//
-//            @Override
-//            public void onPageSelected(int position)
-//            {
-//                nowPage = position;
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state)
-//            {}
-//        });
-//    }
-
-
 
     //ツールバーの設定
     @Override
@@ -74,12 +55,16 @@ public class MainActivity extends AppCompatActivity {
         //現在表示されているリストの削除
         menu.getItem(1).setOnMenuItemClickListener(item ->
         {
-            System.out.println(nowPage);
+            presenter.onDeleteButton();
             return true;
         });
         return true;
     }
 
 
-
+    @Override
+    public Context getContext()
+    {
+        return this;
+    }
 }

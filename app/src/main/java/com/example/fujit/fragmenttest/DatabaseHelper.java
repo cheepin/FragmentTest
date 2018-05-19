@@ -61,6 +61,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
        return result;
     }
 
+    public void deleteList(int index)
+    {
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL_2 +" = " + index;
+        Cursor cursor = getWritableDatabase().rawQuery(query, null);
+        cursor.moveToFirst();
+        cursor.close();
+
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db)
     {

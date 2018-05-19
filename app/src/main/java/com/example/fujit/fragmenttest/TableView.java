@@ -8,10 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.fujit.fragmenttest.view.TableViewInterface;
 
-public class TableView extends Fragment
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class TableView extends Fragment implements TableViewInterface
 {
     private ViewPager myViewPager;
+    private List<ViewPager.OnPageChangeListener> listenerList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -22,12 +28,23 @@ public class TableView extends Fragment
         TableViewAdapter tableViewAdapter = new TableViewAdapter(getActivity().getSupportFragmentManager(), getActivity());
         myViewPager.setAdapter(tableViewAdapter);
 
+        for(ViewPager.OnPageChangeListener  listener : listenerList)
+        {
+            myViewPager.addOnPageChangeListener(listener);
+        }
+
         return layout;
     }
 
-    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener)
+
+    /*
+        OnCreateViewでPageChangerにリスナーを登録
+    */
+    @Override
+    public void setOnPageChangeListenerOnCreate(ViewPager.OnPageChangeListener listener)
     {
-        myViewPager.addOnPageChangeListener(listener);
+        listenerList.add(listener);
+
     }
 
 
