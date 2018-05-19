@@ -26,32 +26,33 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentPlacer fPlacer = new FragmentPlacer();
         tableView = new TableView();
+        fPlacer.addFragment(this, tableView, R.id.frameLayout1);
 
 
-        //fPlacer.addFragment(this, tableView, R.id.frameLayout1);
 
     }
 
-    @Override
-    public void onAttachFragment(Fragment fragment)
-    {
-        tableView.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
-        {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {}
-
-            @Override
-            public void onPageSelected(int position)
-            {
-                nowPage = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state)
-            {}
-        });
-    }
+//
+//    @Override
+//    public void onAttachFragment(Fragment fragment)
+//    {
+//        tableView.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
+//        {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+//            {}
+//
+//            @Override
+//            public void onPageSelected(int position)
+//            {
+//                nowPage = position;
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state)
+//            {}
+//        });
+//    }
 
 
 
