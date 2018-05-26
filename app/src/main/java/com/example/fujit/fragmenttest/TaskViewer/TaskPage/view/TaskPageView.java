@@ -18,6 +18,8 @@ import com.example.fujit.fragmenttest.model.ToDoButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import fujitutil.DPConverter;
+
 public class TaskPageView extends Fragment
 {
     public static final String index = "index";
@@ -28,8 +30,9 @@ public class TaskPageView extends Fragment
     {
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.tab, container, false);
         presenter = new TaskPagePresenterPresenterImpl(this, layout);
-        presenter.createButtonList();
-
+        presenter.createButtonList(new LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                DPConverter.convertPx2Dp(400, getContext())));
 
         return layout;
     }

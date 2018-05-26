@@ -1,6 +1,7 @@
 package com.example.fujit.fragmenttest.TaskViewer.TaskPage.presenter;
 
 import android.support.v4.app.Fragment;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -12,6 +13,8 @@ import com.example.fujit.fragmenttest.model.ToDoButtonDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fujitutil.DPConverter;
 
 import static com.example.fujit.fragmenttest.TaskViewer.TaskPage.view.TaskPageView.index;
 
@@ -32,16 +35,14 @@ public class TaskPagePresenterPresenterImpl implements TaskPagePresenterInterfac
 
     //初期LayOut作成
     @Override
-    public void createButtonList()
+    public void createButtonList(LayoutParams params)
     {
         //ボタン生成
         for (ToDoButton buttonText : getButtonListFromIndex(view.getArguments().getInt(index)))
         {
 
             Button button = new Button(view.getActivity());
-            LayoutParams params = new LayoutParams(
-                    LayoutParams.MATCH_PARENT,
-                    LayoutParams.WRAP_CONTENT);
+
 
             //パラメータ設定
             button.setLayoutParams(params);

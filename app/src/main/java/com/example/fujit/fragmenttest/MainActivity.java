@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements ViewInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
