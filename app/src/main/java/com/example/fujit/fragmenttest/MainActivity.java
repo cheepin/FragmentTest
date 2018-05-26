@@ -8,13 +8,13 @@ import android.view.Menu;
 
 import com.example.fujit.fragmenttest.presenter.MainPresenter;
 import com.example.fujit.fragmenttest.presenter.PresenterInterface;
+import com.example.fujit.fragmenttest.TaskViewer.TaskView;
 import com.example.fujit.fragmenttest.view.ViewInterface;
 
 public class MainActivity extends AppCompatActivity implements ViewInterface
 {
 
     private PresenterInterface presenter;
-    private TableView tableView;
     private int nowPage = 0;
 
     @Override
@@ -27,14 +27,13 @@ public class MainActivity extends AppCompatActivity implements ViewInterface
 
         getSupportActionBar().setSubtitle(R.string.app_name);
 
-
-
         FragmentPlacer fPlacer = new FragmentPlacer();
-        tableView = new TableView();
-        fPlacer.addFragment(this, tableView, R.id.frameLayout1);
 
+        TaskView taskView = new TaskView();
+        fPlacer.addFragment(this, taskView, R.id.frameLayout1);
         presenter = new MainPresenter(this);
-        presenter.setOnPageChangeListener(tableView);
+        presenter.setOnPageChangeListener(taskView);
+
     }
 
     //ツールバーの設定
@@ -44,7 +43,18 @@ public class MainActivity extends AppCompatActivity implements ViewInterface
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
         //追加
-        menu.getItem(0).setOnMenuItemClickListener(item ->
+
+        menu.findItem(R.id.TaskView).setOnMenuItemClickListener(item ->
+        {
+            FragmentPlacer fPlacer = new FragmentPlacer();
+            TaskView taskView = new TaskView();
+            fPlacer.addFragment(this, taskView, R.id.frameLayout1);
+            presenter.setOnPageChangeListener(taskView);
+            return true;
+        });
+
+
+        menu.findItem(R.id.setting1).setOnMenuItemClickListener(item ->
         {
             FragmentPlacer fPlacer = new FragmentPlacer();
             ButtonPlacer buttonPlacer = new ButtonPlacer();
@@ -53,9 +63,14 @@ public class MainActivity extends AppCompatActivity implements ViewInterface
         });
 
         //現在表示されているリストの削除
-        menu.getItem(1).setOnMenuItemClickListener(item ->
+        menu.findItem(R.id.delete).setOnMenuItemClickListener(item ->
         {
             presenter.onDeleteButton();
+
+            FragmentPlacer fPlacer = new FragmentPlacer();
+            TaskView taskView = new TaskView();
+            fPlacer.addFragment(this, taskView, R.id.frameLayout1);
+            presenter.setOnPageChangeListener(taskView);
             return true;
         });
         return true;
