@@ -1,8 +1,6 @@
 package com.example.fujit.fragmenttest.presenter;
 
-import android.support.v4.view.ViewPager;
-
-import com.example.fujit.fragmenttest.view.TableViewInterface;
+import com.example.fujit.fragmenttest.TaskViewer.View.TableViewInterface;
 
 
 @SuppressWarnings("unused")

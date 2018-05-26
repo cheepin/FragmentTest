@@ -2,20 +2,18 @@ package com.example.fujit.fragmenttest.presenter;
 
 import android.support.v4.view.ViewPager;
 
-import com.example.fujit.fragmenttest.DatabaseHelper;
-import com.example.fujit.fragmenttest.view.TableViewInterface;
+import com.example.fujit.fragmenttest.TaskViewer.View.TableViewInterface;
+import com.example.fujit.fragmenttest.model.ToDoButtonDAO;
 import com.example.fujit.fragmenttest.view.ViewInterface;
 
 public class MainPresenter implements PresenterInterface
 {
-    private DatabaseHelper db;
-    private ViewInterface view;
+    private  ToDoButtonDAO dao;
     private int nowPage = 0;
 
     public MainPresenter(ViewInterface view)
     {
-        this.view = view;
-        db = new DatabaseHelper(this.view.getContext());
+        dao = new ToDoButtonDAO(view.getContext());
 
     }
 
@@ -24,7 +22,7 @@ public class MainPresenter implements PresenterInterface
     {
         viewPager.setOnPageChangeListenerOnCreate(new ViewPager.SimpleOnPageChangeListener()
         {
-              @Override
+
               public void onPageSelected(int position)
               {
                   nowPage = position;
@@ -37,7 +35,8 @@ public class MainPresenter implements PresenterInterface
     @Override
     public void onDeleteButton()
     {
-        db.deleteList(nowPage);
+        dao.DeleteList(nowPage);
+        nowPage = 0;
     }
 
     @Override

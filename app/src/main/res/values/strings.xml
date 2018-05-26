@@ -6,6 +6,10 @@
     <string name="hello_blank_fragment2">Hello blank!!</string>
     <string name="successMsg">Success!!</string>
     <string name="setTodo_failMsg">Failed!!</string>
+    <string name="creator.AddButton">Add</string>
+    <string name="Creator_AddButton">Add</string>
+    <string name="Creator_SetButton">Set</string>
+    <string name="Creator_HintText">タスク</string>
 
 
 </resources>
