@@ -8,7 +8,7 @@ import android.view.Menu;
 
 import com.example.fujit.fragmenttest.presenter.MainPresenter;
 import com.example.fujit.fragmenttest.presenter.PresenterInterface;
-import com.example.fujit.fragmenttest.TaskViewer.TaskView;
+import com.example.fujit.fragmenttest.TaskViewer.View.TaskView;
 import com.example.fujit.fragmenttest.view.ViewInterface;
 
 public class MainActivity extends AppCompatActivity implements ViewInterface
