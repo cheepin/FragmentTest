@@ -46,8 +46,12 @@ public class ToDoButtonDAO
 
     public void DeleteList(int index)
     {
-        int deleteIndex = getButtonList().get(index).get(0).getListNumber();
-        db.exeSQL("Delete " + " From " + DatabaseHelper.TABLE_NAME + " Where "
-                + DatabaseHelper.COL_2 + " = " + deleteIndex);
+        if(!getButtonList().isEmpty())
+        {
+            int deleteIndex = getButtonList().get(index).get(0).getListNumber();
+            db.exeSQL("Delete " + " From " + DatabaseHelper.TABLE_NAME + " Where "
+                    + DatabaseHelper.COL_2 + " = " + deleteIndex);
+        }
+
     }
 }
