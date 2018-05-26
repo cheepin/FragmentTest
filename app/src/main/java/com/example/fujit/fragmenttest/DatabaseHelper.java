@@ -29,9 +29,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
         this.getWritableDatabase().execSQL(sql);
     }
 
+    public Cursor readSQL(String sql)
+    {
+        return this.getReadableDatabase().rawQuery(sql, null);
+    }
+
     public int getMaxListCount()
     {
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT max("+COL_1 +") FROM student",null);
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT max("+ COL_2 +") FROM student",null);
         cursor.moveToFirst();
         int max = cursor.getInt(0);
         cursor.close();
@@ -41,24 +46,25 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public List<String> getTextFromList(int listIndex)
     {
-       Cursor cursor =  getReadableDatabase().rawQuery("select "
-                + COL_3
-                + " from "
-                + TABLE_NAME
-                + " where "
-                + COL_2
-                + " = "
-                + listIndex,null);
+        Cursor cursor =  getReadableDatabase().rawQuery("select " + COL_3 + " from " + TABLE_NAME
+                + " Where " + COL_2 + " = " + listIndex,null);
+        List<String> result = new ArrayList<>();
 
-       List<String> result = new ArrayList<>();
+        while(cursor.moveToNext())
+        {
+            result.add(cursor.getString(0));
+        }
+        cursor.close();
+        return result;
+    }
 
-       while(cursor.moveToNext())
-       {
-           result.add(cursor.getString(0));
-       }
+    public void deleteList(int index)
+    {
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL_2 +" = " + index;
+        Cursor cursor = getWritableDatabase().rawQuery(query, null);
+        cursor.moveToFirst();
+        cursor.close();
 
-       cursor.close();
-       return result;
     }
 
     @Override
@@ -76,4 +82,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
     }
+
+
 }

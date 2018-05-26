@@ -30,7 +30,7 @@ public class ButtonPlacer extends Fragment
     {
         //EditText作成
         EditText edit1 = new EditText(getActivity());
-        edit1.setHint(R.string.app_name);
+        edit1.setHint(R.string.Creator_HintText);
         edit1.setLayoutParams(layoutParams);
 
         //追加
@@ -59,12 +59,14 @@ public class ButtonPlacer extends Fragment
         Button addButton = new Button(getActivity());
         addButton.setLayoutParams(layoutParams);
         addButton.setOnClickListener(view -> createNewButton(this.myLinearContainer));
+        addButton.setText(R.string.Creator_AddButton);
         buttonLayout.addView(addButton);
 
         //Setボタン生成
         Button setButton = new Button(getActivity());
         setButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
         setButton.setOnClickListener(view -> setTodoData());
+        setButton.setText(R.string.Creator_SetButton);
         buttonLayout.addView(setButton);
 
 

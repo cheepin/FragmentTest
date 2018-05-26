@@ -1,17 +1,22 @@
 package com.example.fujit.fragmenttest;
 
-import android.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.fujit.fragmenttest.presenter.MainPresenter;
+import com.example.fujit.fragmenttest.presenter.PresenterInterface;
+import com.example.fujit.fragmenttest.TaskViewer.View.TaskView;
+import com.example.fujit.fragmenttest.view.ViewInterface;
 
-    private DatabaseHelper db;
-    private TableView tableView;
+public class MainActivity extends AppCompatActivity implements ViewInterface
+{
+
+    private PresenterInterface presenter;
     private int nowPage = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,38 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setSubtitle(R.string.app_name);
 
-        db = new DatabaseHelper(this);
-
         FragmentPlacer fPlacer = new FragmentPlacer();
-        tableView = new TableView();
 
-
-        //fPlacer.addFragment(this, tableView, R.id.frameLayout1);
+        TaskView taskView = new TaskView();
+        fPlacer.addFragment(this, taskView, R.id.frameLayout1);
+        presenter = new MainPresenter(this);
+        presenter.setOnPageChangeListener(taskView);
 
     }
-
-    @Override
-    public void onAttachFragment(Fragment fragment)
-    {
-        tableView.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
-        {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {}
-
-            @Override
-            public void onPageSelected(int position)
-            {
-                nowPage = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state)
-            {}
-        });
-    }
-
-
 
     //ツールバーの設定
     @Override
@@ -62,7 +43,18 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
         //追加
-        menu.getItem(0).setOnMenuItemClickListener(item ->
+
+        menu.findItem(R.id.TaskView).setOnMenuItemClickListener(item ->
+        {
+            FragmentPlacer fPlacer = new FragmentPlacer();
+            TaskView taskView = new TaskView();
+            fPlacer.addFragment(this, taskView, R.id.frameLayout1);
+            presenter.setOnPageChangeListener(taskView);
+            return true;
+        });
+
+
+        menu.findItem(R.id.setting1).setOnMenuItemClickListener(item ->
         {
             FragmentPlacer fPlacer = new FragmentPlacer();
             ButtonPlacer buttonPlacer = new ButtonPlacer();
@@ -71,14 +63,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //現在表示されているリストの削除
-        menu.getItem(1).setOnMenuItemClickListener(item ->
+        menu.findItem(R.id.delete).setOnMenuItemClickListener(item ->
         {
-            System.out.println(nowPage);
+            presenter.onDeleteButton();
+
+            FragmentPlacer fPlacer = new FragmentPlacer();
+            TaskView taskView = new TaskView();
+            fPlacer.addFragment(this, taskView, R.id.frameLayout1);
+            presenter.setOnPageChangeListener(taskView);
             return true;
         });
         return true;
     }
 
 
-
+    @Override
+    public Context getContext()
+    {
+        return this;
+    }
 }
