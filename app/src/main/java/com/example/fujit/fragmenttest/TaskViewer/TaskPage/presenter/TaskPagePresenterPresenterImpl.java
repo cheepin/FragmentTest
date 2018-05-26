@@ -53,7 +53,7 @@ public class TaskPagePresenterPresenterImpl implements TaskPagePresenterInterfac
 
     }
 
-    public List<ToDoButton> getButtonListFromIndex(int index)
+    private List<ToDoButton> getButtonListFromIndex(int index)
     {
         return dao.getButtonList().get(index);
     }

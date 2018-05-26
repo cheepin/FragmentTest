@@ -10,12 +10,12 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
-    public static final String DATABASE_NAME = "studentDB";
+    private static final String DATABASE_NAME = "studentDB";
     public static final String TABLE_NAME = "student";
 
     public static final String COL_1 = "ID";
     public static final String COL_2 = "List";
-    public static final String COL_3 = "ButtonText";
+    private static final String COL_3 = "ButtonText";
 
 
     public DatabaseHelper(Context context)

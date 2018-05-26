@@ -10,6 +10,9 @@
     <string name="Creator_AddButton">Add</string>
     <string name="Creator_SetButton">Set</string>
     <string name="Creator_HintText">タスク</string>
+    <string name="Main_View">MainView</string>
+    <string name="setting1">Setting1</string>
+    <string name="delete">Delete</string>
 
 
 </resources>

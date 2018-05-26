@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="MainView"
+        android:title="@string/Main_View"
         android:id="@+id/TaskView"
         />
     <item
-        android:title="Setting1"
+        android:title="@string/setting1"
         android:id="@+id/setting1"
         />
     <item
-        android:title="Delete"
+        android:title="@string/delete"
         android:id="@+id/delete"
         />
 </menu>
