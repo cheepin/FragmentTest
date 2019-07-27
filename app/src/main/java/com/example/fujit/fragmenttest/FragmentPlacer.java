@@ -14,7 +14,7 @@ import android.support.v7.app.AppCompatActivity;
  * 5.FragmentManager.beginTransactionからFragmentTransactionのインスタンスを生成する <br>
  * 6.FragmentTransaction#replaceで3で生成したレイアウトのIDと2で作成したフラグメントを引数にわたす <br>
  * 7.FragmentTransaction#commitでコミットする。
- * 
+ *
  */
 public class FragmentPlacer
 {

@@ -17,6 +17,13 @@ import java.util.List;
 
 import fujitutil.DPConverter;
 
+/**
+ * フラグメントクラスの基本
+ * 1.Fragmentを継承したクラスを生成する。
+ * 2.onCreateView()をオーバーライドする。
+ * 3.画面の初期化処理を行う。
+ * 4.戻り値にLayoutInflater#inflaterメソッドを使用し、ここでres/layoutに作成したxmlと関連付ける。
+ */
 public class ButtonPlacer extends Fragment
 {
 
