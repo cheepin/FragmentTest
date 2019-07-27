@@ -7,6 +7,6 @@ public class DPConverter
 {
     public static int convertPx2Dp(int px, Context context){
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return (int) (px / metrics.density);
+        return Math.round(px * metrics.density);
     }
 }

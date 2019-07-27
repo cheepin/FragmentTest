@@ -8,6 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SQLiteの使用方法
+ * 1.SQLiteOpenHelperを継承したクラスを作成する。
+ * 2.onCreateを実装する。
+ * 3.onCreate内でテーブルの初期化などを行う。
+ * 4.getReadableDatabase()及びgetWritableDatabase()でSQLを実行する。
+ */
 public class DatabaseHelper extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "studentDB";
@@ -18,6 +25,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COL_3 = "ButtonText";
 
 
+    /**
+     * コンストラクタ
+     * 親のコンストラクタにcontext、データベースの名前などを渡す。
+     * @param context Activityのcontext
+     */
     public DatabaseHelper(Context context)
     {
         super(context, DATABASE_NAME, null, 2);

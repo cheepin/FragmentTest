@@ -32,7 +32,7 @@ public class TaskPageView extends Fragment
         presenter = new TaskPagePresenterPresenterImpl(this, layout);
         presenter.createButtonList(new LayoutParams(
                 LayoutParams.MATCH_PARENT,
-                DPConverter.convertPx2Dp(400, getContext())));
+                DPConverter.convertPx2Dp(50, getContext())));
 
         return layout;
     }

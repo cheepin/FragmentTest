@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -31,7 +31,9 @@ public class ButtonPlacer extends Fragment
         //EditText作成
         EditText edit1 = new EditText(getActivity());
         edit1.setHint(R.string.Creator_HintText);
-        edit1.setLayoutParams(layoutParams);
+        edit1.setLayoutParams(new LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT));
 
         //追加
         editTextList.add(edit1);
@@ -46,8 +48,7 @@ public class ButtonPlacer extends Fragment
         this.myLinearContainer = (LinearLayout) inflater.inflate(R.layout.button_placer, container, false);
 
         //LayoutParam作成
-        layoutParams = new LayoutParams(DPConverter.convertPx2Dp(2100, getContext()),
-                LayoutParams.WRAP_CONTENT);
+
 
         //LinearLayout作成
         LinearLayout buttonLayout = new LinearLayout(getActivity());
@@ -57,14 +58,15 @@ public class ButtonPlacer extends Fragment
 
         //Addボタン生成
         Button addButton = new Button(getActivity());
-        addButton.setLayoutParams(layoutParams);
+        addButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT,0.7f));
+
         addButton.setOnClickListener(view -> createNewButton(this.myLinearContainer));
         addButton.setText(R.string.Creator_AddButton);
         buttonLayout.addView(addButton);
 
         //Setボタン生成
         Button setButton = new Button(getActivity());
-        setButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+        setButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         setButton.setOnClickListener(view -> setTodoData());
         setButton.setText(R.string.Creator_SetButton);
         buttonLayout.addView(setButton);

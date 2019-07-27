@@ -1,12 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     signingConfigs {
         config {
             keyAlias 'myAndroid'
@@ -20,7 +18,6 @@ android {
         applicationId "com.example.fujit.fragmenttest"
         minSdkVersion 23
         targetSdkVersion 26
-        versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -30,6 +27,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
+    }
+    productFlavors {
     }
 }
 
